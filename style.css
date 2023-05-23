@@ -1,0 +1,146 @@
+body { 
+    font-family: 'Miriam Libre', sans-serif;
+    font-size: 17px;
+    direction: ltr;
+    text-align: right;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* removes margins from body of the website */
+    background-image: radial-gradient(#8b0000 0.5px, transparent 0.50px), radial-gradient(#b6b6b6 0.5px, #000000 0.5px);
+    background-size: 100px 100px;
+    background-position: 0px 0px ,50px 50px;
+}
+h1 {
+    color: rgb(215, 215, 215);
+    font-size: 70px;
+    font-weight: lighter;
+    margin: 0%;
+    letter-spacing: 12pt;
+}
+a {
+    color: rgb(215, 215, 215);
+    margin-bottom: 15px;
+}
+p {
+    color: rgb(215, 215, 215);
+    text-align: center;
+    margin: 0;
+}
+.titles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-right: 50px;
+}
+.maintitle {
+    display: flex;
+}
+.credits {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    margin-left: 50px;
+}
+.sundiv {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 66vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+#sunimg {
+    position: absolute;
+    bottom: 0;
+}
+img {
+    margin-bottom: 15px;
+}
+
+.navWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.topnav, .buttomnav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    opacity: 60%;
+    transition: 0.5s;
+    z-index: 2;
+    /* transform-origin: center center; */
+    /* right: 50%;
+    left: 50% */
+}
+.topnav {
+    top: 0px;
+    margin: 50px;
+}
+.topnav:hover {
+    opacity: 100%;
+}
+.buttomnav:hover {
+    opacity: 100%;
+}
+.buttomnav {
+    bottom: 0px;
+    margin: 50px;
+}
+.arrow {
+    margin: 15px;
+    height: 25px;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+.opacity {
+    opacity: 50%;
+    transition: 0.5s;
+}
+.planet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sunmer {height: 57730px;}
+.merven {height: 50299px;}
+.venear {height: 41389px;}
+.earmar {height: 78339px;}
+.marcer {height: 185844px;}
+.cerjup {height: 364632px;}
+.jupsat {height: 648313px;}
+.satura {height: 1444247px;}
+.uranep {height: 1627280px;}
+.nepplu {height: 1453242px;}
+.pluend {height: 150px;}
+
+.navnav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px;
+    z-index: 1;
+}
+.navdiv {
+    display: flex;
+    flex-direction: column;
+}
+.navicon {
+    height: 20px;
+    margin: 5px;
+}
+.navicon:hover {
+    opacity: 100%;
+    transition: 0.5s;
+}

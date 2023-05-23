@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solar System to Scale</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre&display=swap" rel="stylesheet">
+    <script defer type ="text/javascript" src="app.js"></script>
+</head>
+<body>
+    <nav class="navnav">
+        <div class="navdiv">
+            <img id="sunnav" class="navicon opacity" src="./Assets/SVG/sunicon.svg">
+            <img id="mernav" class="navicon opacity" src="./Assets/SVG/mercuryicon.svg">
+            <img id="vennav" class="navicon opacity" src="./Assets/SVG/venusicon.svg">
+            <img id="earnav" class="navicon opacity" src="./Assets/SVG/earthicon.svg">
+            <img id="marnav" class="navicon opacity" src="./Assets/SVG/marsicon.svg">
+            <img id="cernav" class="navicon opacity" src="./Assets/SVG/ceresicon.svg">
+            <img id="jupnav" class="navicon opacity" src="./Assets/SVG/jupitericon.svg">
+            <img id="satnav" class="navicon opacity" src="./Assets/SVG/saturnicon.svg">
+            <img id="uranav" class="navicon opacity" src="./Assets/SVG/uranusicon.svg">
+            <img id="nepnav" class="navicon opacity" src="./Assets/SVG/neptuneicon.svg">
+            <img id="plunav" class="navicon opacity" src="./Assets/SVG/plutoicon.svg">
+        </div>
+    </nav>
+    <header>
+        <div class="sundiv">
+            <img id="sunimg" class="img" src="./Assets/Sun.png">
+        </div>
+        <div class="titles">
+            <div class="maintitle">
+                <img src="./Assets/SVG/Title.svg">
+            </div>
+        </div>
+    </header>
+
+    <!-- Mercury -->
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>The Sun in</p>
+            <p><span id="sunSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="sunmer space"></div>
+    
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Mercury in</p>
+            <p><span id="downToMerSpan">X</span> pixels</p>
+        </div>
+    </div>
+    <div class="planet">
+        <img id="mercuryimg" class="img" src="./Assets/Mercury.jpg">
+        <p class="info">Mercury (Terrestrial Planet) <br> Diameter: 4 pixels <br> Average distance from the sun: 57,909</p>
+    </div>
+
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Mercury in</p>
+            <p><span id="upToMerSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="merven space"></div>
+
+    <!-- Venus -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Venus in</p>
+            <p><span id="downToVenSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="venusimg" class="img" src="./Assets/Venus.jpg">
+        <p class="info">Venus (Terrestrial Planet) <br> Diameter: 12 pixels <br> Average distance from the sun: 108,208</p>
+    </div>
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Venus in</p>
+            <p><span id="upToVenSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="venear space"></div>
+
+    <!-- Earth -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Earth in</p>
+            <p><span id="downToEarSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="earthimg" class="img" src="./Assets/Earth.jpg">
+        <p class="info">Earth (Terrestrial Planet)<br> Diameter: 12 <br> Average distance from the sun: 149,597</p>
+    </div>
+
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Earth in</p>
+            <p><span id="upToEarSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="earmar space"></div>
+
+    <!-- Mars -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Mars in</p>
+            <p><span id="downToMarSpan">X</span> pixels</p>
+        </div>    
+    </div>
+
+    <div class="planet">
+        <img id="marsimg" class="img" src="./Assets/Mars.jpg">
+        <p class="info">Mars (Terrestrial Planet)<br> Diameter: 6 pixels <br> Average distance from the sun: 227,936</p>
+    </div>
+
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Mars in</p>
+            <p><span id="upToMarSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="marcer space"></div>
+
+    <!-- Ceres -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Ceres in</p>
+            <p><span id="downToCerSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="ceresimg" class="img" src="./Assets/Pluto.jpg">
+        <p class="info">Ceres (Dwarf Planet) <br> Diameter: 0.9 pixels <br> Average distance from the sun: 413,781</p>
+    </div>
+
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Ceres in</p>
+            <p><span id="upToCerSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="cerjup space"></div>
+
+    <!-- Jupiter -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Jupiter in</p>
+            <p><span id="downToJupSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="jupiterimg" class="img" src="./Assets/Jupiter.jpg">
+        <p class="info">Jupiter (Gas Giant) <br> Diameter: 139 pixels <br> Average distance from the sun: 778,412</p>
+    </div>
+
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Jupiter in</p>
+            <p><span id="upToJupSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="jupsat space"></div>
+
+    <!-- Saturn -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Saturn in</p>
+            <p><span id="downToSatSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="saturnimg" class="img" src="./Assets/Saturn.jpg">
+        <p class="info">Saturn (Gas Giant) <br> Diameter: 116 pixels <br> Average distance from the sun: 1,426,725</p>
+    </div>
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Saturn in</p>
+            <p><span id="upToSatSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="satura space"></div>
+
+    <!-- Uranus -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Uranus in</p>
+            <p><span id="downToUraSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="uranusimg" class="img" src="./Assets/Uranus.jpg">
+        <p class="info">Uranus (Gas Giant) <br> Diameter: 50 pixels <br> Average distance from the sun: 2,870,972</p>
+    </div>
+
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Uranus in</p>
+            <p><span id="upToUraSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+
+    <div class="uranep space"></div>
+
+    <!-- Neptune -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Neptune in</p>
+            <p><span id="downToNepSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="neptuneimg" class="img" src="./Assets/Neptune.jpg">
+        <p class="info">Neptune (Gas Giant) <br> Diameter: 49 pixels <br> Average distance from the sun: 4,498,252 pixels</p>
+    </div>
+
+    <div class="navWrapper">
+        <div class="topnav hidden">
+            <p>Neptune in</p>
+            <p><span id="upToNepSpan">X</span> pixels</p>
+            <img class="arrow" src="./Assets/SVG/Upicon.svg">
+        </div>
+    </div>
+    
+    <div class="nepplu space"></div>
+
+    <!-- Pluto -->
+    <div class="navWrapper">
+        <div class="buttomnav hidden">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Pluto in</p>
+            <p><span id="downToPluSpan">X</span> pixels</p>
+        </div>
+    </div>
+
+    <div class="planet">
+        <img id="plutoimg" class="img" src="./Assets/Pluto.jpg">
+        <p class="info">Pluto (Dwarf Planet) <br>Diameter: 2 pixels <br> Average distance from the sun: 5,906,375 pixels</p>
+    </div>
+
+    <div class="pluend"></div>
+    <audio id="navsound" src="./Assets/sound/ui-click.wav"></audio>
+</body>
+</html>
