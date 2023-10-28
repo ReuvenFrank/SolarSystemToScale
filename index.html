@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solar System to Scale</title>
+    <link rel="icon" href="./Assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre&display=swap" rel="stylesheet">
+    <script defer type ="text/javascript" src="app.js"></script>
+    <!-- <script defer type ="text/javascript" src="api-dev.js"></script> -->
+    <script defer type ="text/javascript" src="api-proxy.js"></script>
+    <script defer type ="text/javascript" src="setup.js"></script>
+    <script defer type ="text/javascript" src="observer.js"></script>
+    <script id="tag">
+        document.addEventListener("DOMContentLoaded", function() {
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            let scriptElement = document.createElement('script');
+            let currentScriptTag = document.querySelector('#tag');
+            const platform = document.getElementById('platform');
+        
+            scriptElement.defer = true;
+            scriptElement.type = "text/javascript";
+        
+            if (!isTouchDevice) {
+                scriptElement.src = "nav-desktop.js";
+                platform.innerHTML = 'Desktop'
+            } else {
+                scriptElement.src = "nav-mobile.js";
+                platform.innerHTML = 'Mobile'
+            }
+        
+            currentScriptTag.parentNode.insertBefore(scriptElement, currentScriptTag.nextSibling);
+        });
+    </script>         
+    <script defer type ="text/javascript" src="stars.js"></script>
+    <!-- <script defer type ="text/javascript" src="data.js"></script> -->
+</head>
+<body>
+    <canvas id="stars"></canvas>
+    <canvas id="stars2"></canvas>
+    <canvas id="stars3"></canvas>
+    <canvas id="stars4"></canvas>
+    <canvas id="stars5"></canvas>
+    <canvas id="stars6"></canvas>
+    <canvas id="stars7"></canvas>
+    <canvas id="stars8"></canvas>
+    <canvas id="stars9"></canvas>
+    <canvas id="stars10"></canvas>
+    <nav class="sidebar">
+        <div id="dev">
+            <img class="settings" src="./Assets/SVG/settings.svg">
+        </div>
+        <div class="sidebardiv">
+            <img id="Sun" class="sidebaricon" src="./Assets/SVG/sunicon.svg">
+            <img id="Mercury" class="sidebaricon hidden" src="./Assets/SVG/mercuryicon.svg">
+            <img id="Venus" class="sidebaricon hidden" src="./Assets/SVG/venusicon.svg">
+            <img id="Earth" class="sidebaricon hidden" src="./Assets/SVG/earthicon.svg">
+            <img id="Mars" class="sidebaricon hidden" src="./Assets/SVG/marsicon.svg">
+            <img id="Jupiter" class="sidebaricon hidden" src="./Assets/SVG/jupitericon.svg">
+            <img id="Saturn" class="sidebaricon hidden" src="./Assets/SVG/saturnicon.svg">
+            <img id="Uranus" class="sidebaricon hidden" src="./Assets/SVG/uranusicon.svg">
+            <img id="Neptune" class="sidebaricon hidden" src="./Assets/SVG/neptuneicon.svg">
+        </div>
+    </nav>
+    <nav>
+        <div class="topnavWrapper">
+            <div class="topnav">
+                <p><span id="topNam">[Name]</span> in</p>
+                <p><span id="topDis">Calculating...</span> pixels</p>
+                <img class="arrow" src="./Assets/SVG/Upicon.svg">
+            </div>
+        </div>
+        <div class="bottomnavWrapper">
+            <div class="bottomnav">
+                <img class="arrow" src="./Assets/SVG/Downicon.svg">
+                <p><span id="botNam">[Name]</span> in</p>
+                <p><span id="botDis">Calculating...</span> pixels</p>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div class="start">
+            <div class="titles">
+                <p class="title" style="font-size: 50px; letter-spacing: 10px;">The Solar System<br>to Scale</p>
+                <p class="title">in which every pixel on the screen<br>represents 1,000 kilometers.</p>
+            </div>
+        </div>
+        <div id="scroll" class="scroll">
+            <img class="arrow" src="./Assets/SVG/Downicon.svg">
+            <p>Scroll down</p>
+        </div>
+    </header>
+
+    <!-- The Sun -->
+    <div class="planetdiv">
+            <img id="Sun" class="image" style="width: 1391px;" src="./Assets/planets/Sun.png">
+            <p id="Sun" class="info">The Sun (Yellow Dwarf Star) <br> Diameter: 1,391 pixels</p>
+        </div>
+    </div>
+
+    <div id="Sun" class="sunmer space"></div>
+
+    <!-- Mercury -->   
+    <div class="planetdiv">
+        <div id="Mercury" class="perihelion"></div>
+        <img id="Mercury" class="image" style="width: 4px;" src="./Assets/planets/Mercury.png">
+        <p id="Mercury" class="info">Mercury (Terrestrial Planet) <br> Diameter: 4 pixels <br> Distance: <span id="disSpa1"></span> pixels</p>
+        <div id="Mercury" class="aphelion"></div>
+    </div>
+
+    <div id="Mercury" class="merven space"></div>
+
+    <!-- Venus -->
+    <div class="planetdiv">
+        <div id="Venus" class="perihelion"></div>
+        <img id="Venus" class="image" style="width: 12px;" src="./Assets/planets/Venus.png">
+        <p id="Venus" class="info">Venus (Terrestrial Planet) <br> Diameter: 12 pixels <br> Distance: <span id="disSpa2"></span> pixels</p>
+        <div id="Venus" class="aphelion"></div>
+    </div>
+
+    <div id="Venus" class="venear space"></div>
+
+    <!-- Earth -->
+    <div class="planetdiv">
+        <div id="Earth" class="perihelion"></div>
+        <img id="Earth" class="image" style="width: 12px;" src="./Assets/planets/Earth.png">
+        <p id="Earth" class="info">Earth (Terrestrial Planet)<br> Diameter: 12 pixels <br> Distance: <span id="disSpa3"></span> pixels</p>
+        <div id="Earth" class="aphelion"></div>
+    </div>
+
+    <div id="Earth" class="earmar space"></div>
+
+    <!-- Mars -->
+    <div class="planetdiv">
+        <div id="Mars" class="perihelion"></div>
+        <img id="Mars" class="image" style="width: 6px;" src="./Assets/planets/Mars.png">
+        <p id="Mars" class="info">Mars (Terrestrial Planet)<br> Diameter: 6 pixels <br> Distance: <span id="disSpa4"></span> pixels</p>
+        <div id="Mars" class="aphelion"></div>
+    </div>
+
+    <div id="Mars" class="marjup space"></div>
+
+    <!-- Jupiter -->
+    <div class="planetdiv">
+        <div id="Jupiter" class="perihelion"></div>
+        <img id="Jupiter" class="image" style="width: 139px;" src="./Assets/planets/Jupiter.png">
+        <p id="Jupiter" class="info">Jupiter (Gas Giant) <br> Diameter: 139 pixels <br> Distance: <span id="disSpa5"></span> pixels</p>
+        <div id="Jupiter" class="aphelion"></div>
+    </div>
+
+    <div id="Jupiter" class="jupsat space"></div>
+
+    <!-- Saturn -->
+    <div class="planetdiv">
+        <div id="Saturn" class="perihelion"></div>
+        <img id="Saturn" class="image" style="width: 118px;" src="./Assets/planets/Saturn.png">
+        <p id="Saturn" class="info">Saturn (Gas Giant) <br> Diameter: 116 pixels <br> Distance: <span id="disSpa6"></span> pixels</p>
+        <div id="Saturn" class="aphelion"></div>
+    </div>
+
+    <div id="Saturn" class="satura space"></div>
+
+    <!-- Uranus -->
+    <div class="planetdiv">
+        <div id="Uranus" class="perihelion"></div>
+        <img id="Uranus" class="image" style="height: 50px;" src="./Assets/planets/Uranus.png">
+        <p id="Uranus" class="info">Uranus (Gas Giant) <br> Diameter: 50 pixels <br> Distance: <span id="disSpa7"></span> pixels</p>
+        <div id="Uranus" class="aphelion"></div>
+    </div>
+
+    <div id="Uranus" class="uranep space"></div>
+
+    <!-- Neptune -->
+    <div class="planetdiv">
+        <div id="Neptune" class="perihelion"></div>
+        <img id="Neptune" class="image" style="width: 49px;" src="./Assets/planets/Neptune.png">
+        <p id="Neptune" class="info">Neptune (Gas Giant) <br> Diameter: 49 pixels <br> Distance: <span id="disSpa8"></span> pixels</p>
+    </div>
+    
+    <div class="end"></div>
+    <div class="titles">
+        <p class="title credits">Design & Development by Reuven Frank | © 2023 All rights reserved.<br><span id="platform"></span> version 1.2.2-dev</p>
+    </div>
+    <script>
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+</body>
+</html>
