@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+}
+.navnav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    margin: -20px;
+}
+.navdiv {
+    display: flex;
+    flex-direction: column;
+}
+.navicon {
+    height: 20px;
+    margin: 5px;
+}
