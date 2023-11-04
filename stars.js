@@ -1,11 +1,3 @@
-const topBuffer = {top: 0 - window.innerHeight, bottom: 0};
-const bottomBuffer = {top: window.innerHeight, bottom: window.innerHeight * 2};
-
-console.log(`top buffer: ${topBuffer.top}, ${topBuffer.bottom}`);
-console.log(topBuffer);
-console.log(`bottom buffer: ${bottomBuffer.top}, ${bottomBuffer.bottom}`);
-console.log(bottomBuffer);
-
 class CanvasManager {
     //------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------
@@ -22,12 +14,11 @@ class CanvasManager {
         return Math.floor(Math.random() * (window.innerWidth - 0));
     }
     randomHeightOnScreen() {
-        return Math.floor(Math.random() * (window.innerHeight - 0));
+        return Math.floor(Math.random() * ((window.innerHeight * 2) - 0));
     }
     
     // Initiation Functions
     initialize() {
-        console.log(`initialize stars constructor`)
         this.calculateTotalDots();
         this.lastScrollY = window.scrollY; // Store the initial scroll position
         for (let i = 0; i < this.totalDots; i++) {
@@ -38,7 +29,6 @@ class CanvasManager {
             this.ctx.fillStyle = 'white';
             this.ctx.fillRect(x, y, s, s);
             this.dots.push({ x, y, size: s });
-            console.log('stars drawn');
         }
     }
     constructor(canvasId, density, minDotSize, maxDotSize, scrollSpeed) {
@@ -56,12 +46,10 @@ class CanvasManager {
         this.canvas.height = window.innerHeight;
 
         function changeSize () {
-            console.log('resized');
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
-            this.handleStarScroll();
         }
-        // window.addEventListener('resize', changeSize.bind(this));
+        window.addEventListener('resize', changeSize.bind(this));
 
         this.initialize();
     }
@@ -71,14 +59,10 @@ class CanvasManager {
 
     // Scroll Functions
     randomHeightOnTop() {
-        var a = Math.floor(Math.random() * (topBuffer.bottom - topBuffer.top)) * -1;
-        // console.log(0 +' '+ a +' '+ window.innerHeight * -1);
-        return a;
+        return Math.floor(Math.random() * (0 - window.innerHeight));
     }
     randomHeightOnBottom() {
-        var a = bottomBuffer.top + Math.floor(Math.random() * (bottomBuffer.bottom - bottomBuffer.top));
-        // console.log(window.innerHeight +' '+ a +' '+ bottomBuffer);
-        return a;
+        return window.innerHeight + Math.floor(Math.random() * (window.innerHeight - 0));
     }
 
     drawDotAtBottom() {
@@ -89,9 +73,6 @@ class CanvasManager {
         this.ctx.fillStyle = 'white';
         this.ctx.fillRect(x, y, s, s);
         this.dots.push({ x, y, size: s });
-
-        console.log('drawing star');
-        // console.log(`bottom ${y}`);
     }
     drawDotAtTop() {
         const s = this.randomSize();
@@ -101,9 +82,6 @@ class CanvasManager {
         this.ctx.fillStyle = 'white';
         this.ctx.fillRect(x, y, s, s);
         this.dots.push({ x, y, size: s });
-
-        console.log('drawing star');
-        // console.log(`top ${y}`);
     }
     handleStarScroll() {
         const currentScrollY = window.scrollY;
@@ -115,13 +93,11 @@ class CanvasManager {
             const dot = this.dots[i];
             dot.y -= scrollAmount;
 
-            if (dot.y + dot.size < topBuffer.top) {
-                // console.log('a star has left from the top');
+            if (dot.y + dot.size < 0) {
                 this.dots.splice(i, 1);
                 this.drawDotAtBottom();
                 continue;
-            } else if (dot.y - dot.size > bottomBuffer.bottom) {
-                // console.log('a star has left from the bottom');
+            } else if (dot.y > window.innerHeight) {
                 this.dots.splice(i, 1);
                 this.drawDotAtTop();
                 continue;
