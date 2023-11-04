@@ -127,9 +127,9 @@ class CanvasManager {
     }
 }
 // canvasId, density, minDotSize, maxDotSize, scrollSpeed
-const canvas1 = new CanvasManager('stars', 2.25, 1, 1, 0);
-const canvas2 = new CanvasManager('stars2', 2, 1, 1, 0.00001);
-const canvas3 = new CanvasManager('stars3', 1.75, 1, 1, 0.0001);
+const canvas1 = new CanvasManager('stars', 0.1, 1, 1, 0);
+const canvas2 = new CanvasManager('stars2', 0.5, 1, 1, 0.00001);
+const canvas3 = new CanvasManager('stars3', 1, 1, 1, 0.0001);
 const canvas4 = new CanvasManager('stars4', 1.5, 1, 1, 0.0005);
 const canvas5 = new CanvasManager('stars5', 1.75, 1, 1, 0.001);
 const canvas6 = new CanvasManager('stars6', 1, 1, 1.25, 0.05);
