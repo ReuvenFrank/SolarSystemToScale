@@ -27,7 +27,7 @@ class CanvasManager {
     
     // Initiation Functions
     initialize() {
-        console.log(`initialize`)
+        console.log(`initialize stars constructor`)
         this.calculateTotalDots();
         this.lastScrollY = window.scrollY; // Store the initial scroll position
         for (let i = 0; i < this.totalDots; i++) {
@@ -38,6 +38,7 @@ class CanvasManager {
             this.ctx.fillStyle = 'white';
             this.ctx.fillRect(x, y, s, s);
             this.dots.push({ x, y, size: s });
+            console.log('stars drawn');
         }
     }
     constructor(canvasId, density, minDotSize, maxDotSize, scrollSpeed) {
@@ -55,10 +56,12 @@ class CanvasManager {
         this.canvas.height = window.innerHeight;
 
         function changeSize () {
+            console.log('resized');
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
+            this.handleStarScroll();
         }
-        window.addEventListener('resize', changeSize.bind(this));
+        // window.addEventListener('resize', changeSize.bind(this));
 
         this.initialize();
     }
@@ -87,6 +90,7 @@ class CanvasManager {
         this.ctx.fillRect(x, y, s, s);
         this.dots.push({ x, y, size: s });
 
+        console.log('drawing star');
         // console.log(`bottom ${y}`);
     }
     drawDotAtTop() {
@@ -98,6 +102,7 @@ class CanvasManager {
         this.ctx.fillRect(x, y, s, s);
         this.dots.push({ x, y, size: s });
 
+        console.log('drawing star');
         // console.log(`top ${y}`);
     }
     handleStarScroll() {
