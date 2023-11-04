@@ -48,6 +48,7 @@ class CanvasManager {
         function changeSize () {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
+            this.handleStarScroll();
         }
         window.addEventListener('resize', changeSize.bind(this));
 
