@@ -27,65 +27,61 @@ function getCenter(element) {
 
   return(targetScrollPosition);
 };
-function handleClick (element) {
-  console.log(element.isDynamic);
-}
-function handleTopNavClick() {
-  topnav.style.opacity = OPACITY_100;
-  topnav.isDynamic = false;
-  scrollToTarget(topPla);
+function handleTopNavClick () {
+  autoScroll(topPla, topnav);
 };
-function handleBottomNavClick() {
-  bottomnav.style.opacity = OPACITY_100;
-  bottomnav.isDynamic = false;
-  scrollToTarget(botPla);
+function handleBottomNavClick () {
+  autoScroll(botPla, bottomnav);
 };
-function scrollToTarget(element) {
+sidebaricon.forEach(button => {
+  button.addEventListener('click', () => findTarget(button));
+  function findTarget (button) {
+    var target = planetsData[planetsData.findIndex(element => element.name === button.id)];
+    autoScroll(target, button);
+  }
+});
+function autoScroll(target, button) {
   let start;
   let isUserScrolling = false;
   let duration = 10000;
   let initialValue = window.scrollY;
-  let finalValue = getCenter(element.img);
+  let finalValue = getCenter(target.img);
 
-  function easeInOutCubic(t) {
+  button.style.opacity = OPACITY_100;
+  button.isDynamic = false;
+
+  function easeInOut(t) {
     return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (t - 1) * (t - 1) * (t - 1) * (t - 1) * (t - 1);
   }
-  function animate(timestamp) {
+  function initiate(timestamp) {
     if (!start) start = timestamp;
     let elapsed = timestamp - start;
 
-    if (elapsed < duration && !isUserScrolling) {
-      let progress = easeInOutCubic(elapsed / duration);
-      let currentValue = initialValue + (finalValue - initialValue) * progress;
-      window.scrollTo(0, currentValue);
-      requestAnimationFrame(animate);
-    } else if(!isUserScrolling) {
-      window.scrollTo(0, finalValue);
-      console.log('Auto-scroll ended')
+    if (!isUserScrolling) {
+      if (elapsed < duration) {
+        let progress = easeInOut(elapsed / duration);
+        let currentValue = initialValue + (finalValue - initialValue) * progress;
+  
+        if (isPartiallyInViewport(target.img)) {
+          button.isDynamic = true;
+        }
+
+        window.scrollTo(0, currentValue);
+        requestAnimationFrame(initiate);
+      } else {
+        window.scrollTo(0, finalValue);
+      }
     }
   }
-  function checkUserScroll() {
+  function abort() {
     isUserScrolling = true;
-    // Remove the event listener as soon as user scrolls manually
-    window.removeEventListener('wheel', checkUserScroll);
+    button.isDynamic = true;
+    window.removeEventListener('wheel', abort);
   }
 
-  if (isPartiallyInViewport(element.img)) {
-    element.isDynamic = true;
-    console.log(element.isDynamic);
-  }
-
-  console.log('Auto-scroll Initiated')
-  console.log(element)
-  requestAnimationFrame(animate);
-  window.addEventListener('wheel', checkUserScroll);
+  requestAnimationFrame(initiate);
+  window.addEventListener('wheel', abort);
 };
-
-sidebaricon.forEach(element => {element.addEventListener('click', scrollToPla, false);});
-function scrollToPla(){
-  var a = planetsData[planetsData.findIndex(element => element.name === event.target.id)];
-  scrollToTarget(a);
-}
 
 // Dynamic Opacity Functions
 
@@ -311,6 +307,6 @@ bottomnav.addEventListener('click', () => {
   }
 });
 
-function handleHover(event) {
-  console.log(event.target)
-}
+// function handleHover(event) {
+//   console.log(event.target)
+// }
