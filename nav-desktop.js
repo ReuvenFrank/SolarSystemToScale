@@ -1,12 +1,12 @@
 // Constants
 const SCROLL_BEHAVIOR = 'smooth';
-const elements = [topnav, bottomnav, ...sidebaricon, ...info, ...title, scroll];
+const elements = [topnav, bottomnav, ...sidebaricon, ...info, ...title, scrollDownSign];
 const OPACITY_100 = "100%";
 const OPACITY_50 = "50%";
 const OPACITY_0 = "0%";
 
 // Flags
-var scrollFlag = true;
+var isScrolled = true;
 
 // Variables for handleMouseMove
 let centers;
@@ -27,10 +27,17 @@ function getCenter(element) {
 
   return(targetScrollPosition);
 };
+function handleClick (element) {
+  console.log(element.isDynamic);
+}
 function handleTopNavClick() {
+  topnav.style.opacity = OPACITY_100;
+  topnav.isDynamic = false;
   scrollToTarget(topPla);
 };
 function handleBottomNavClick() {
+  bottomnav.style.opacity = OPACITY_100;
+  bottomnav.isDynamic = false;
   scrollToTarget(botPla);
 };
 function scrollToTarget(element) {
@@ -43,27 +50,35 @@ function scrollToTarget(element) {
   function easeInOutCubic(t) {
     return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (t - 1) * (t - 1) * (t - 1) * (t - 1) * (t - 1);
   }
+  function animate(timestamp) {
+    if (!start) start = timestamp;
+    let elapsed = timestamp - start;
+
+    if (elapsed < duration && !isUserScrolling) {
+      let progress = easeInOutCubic(elapsed / duration);
+      let currentValue = initialValue + (finalValue - initialValue) * progress;
+      window.scrollTo(0, currentValue);
+      requestAnimationFrame(animate);
+    } else if(!isUserScrolling) {
+      window.scrollTo(0, finalValue);
+      console.log('Auto-scroll ended')
+    }
+  }
   function checkUserScroll() {
     isUserScrolling = true;
     // Remove the event listener as soon as user scrolls manually
     window.removeEventListener('wheel', checkUserScroll);
   }
-  window.addEventListener('wheel', checkUserScroll);
 
-  function animate(timestamp) {
-      if (!start) start = timestamp;
-      let elapsed = timestamp - start;
-
-      if (elapsed < duration && !isUserScrolling) {
-          let progress = easeInOutCubic(elapsed / duration);
-          let currentValue = initialValue + (finalValue - initialValue) * progress;
-          window.scrollTo(0, currentValue);
-          requestAnimationFrame(animate);
-      } else if(!isUserScrolling) {
-          window.scrollTo(0, finalValue); // Ensures we end exactly at our final value.
-      }
+  if (isPartiallyInViewport(element.img)) {
+    element.isDynamic = true;
+    console.log(element.isDynamic);
   }
+
+  console.log('Auto-scroll Initiated')
+  console.log(element)
   requestAnimationFrame(animate);
+  window.addEventListener('wheel', checkUserScroll);
 };
 
 sidebaricon.forEach(element => {element.addEventListener('click', scrollToPla, false);});
@@ -163,7 +178,7 @@ function setNavigationOpacity(element) {
   if ((isTopNav(element) && (curPla.bottom > 0 && curPla.top <= tnavBND.bottom || curPla.name === 'Sun')) ||
   (isTopNav(element) && topPla.name === 'Neptune')) {
       setOpacity(element, OPACITY_0);
-      element.intersecting = true;
+      element.isIntersecting = true;
       return true;
   } else if (isBottomNav(element) && (
       (curPla.bottom > bnavBND.top && curPla.top <= window.innerHeight) ||
@@ -172,17 +187,17 @@ function setNavigationOpacity(element) {
       (topPla.name === 'Neptune' && curPla.top <= bnavBND.bottom)
   )) {
       setOpacity(element, OPACITY_0);
-      element.intersecting = true;
+      element.isIntersecting = true;
       return true;
   }
   return false;
 }
 
 function setDynamicOpacity(element) {
-  if (element === scroll && !scrollFlag) {
+  if (element === scrollDownSign && !isScrolled || !element.isDynamic) {
     return;
   }
-  if (!element.intersecting && isHovered(element, cursor) && (element === topnav || element === bottomnav || sidebaricon.includes(element))) {
+  if (!element.isIntersecting && isHovered(element, cursor) && (element === topnav || element === bottomnav || sidebaricon.includes(element))) {
     element.style.opacity = OPACITY_100;
     element.style.cursor = 'pointer';
     return;
@@ -195,7 +210,7 @@ function setDynamicOpacity(element) {
   if (info.includes(element) && setInfoOpacity(element)) {
     return;
   } else {
-    element.intersecting = false;
+    element.isIntersecting = false;
   }
   if (setNavigationOpacity(element)) {
     return;
@@ -225,18 +240,20 @@ function handleMouseMove(event) {
   }
 
   elements.forEach(element => {
-    if (element !== scroll || scrollFlag) {
+    if (element !== scrollDownSign || isScrolled || element.isDynamic) {
       setDynamicOpacity(element);
     }
   });
 }
 function handleScroll() {
-  if (scrollFlag) {
-    scroll.style.opacity = OPACITY_0;
-    scrollFlag = false;
+  if (isScrolled) {
+    scrollDownSign.style.opacity = OPACITY_0;
+    isScrolled = false;
   }
   elements.forEach(element => {
-    setDynamicOpacity(element);
+    if (element.isDynamic) {
+      setDynamicOpacity(element);
+    }
   });
 }
 
@@ -260,6 +277,12 @@ function updateDistanceSpans() {
 // Event listeners
 
 window.addEventListener("load", () => {
+  // Add Tag Switches
+  elements.forEach(element => {element.isDynamic = true;});
+  elements.forEach(element => {element.isIntersecting = false;});
+  elements.forEach(element => {element.isHovered = false;});
+
+  // Execute Functions
   defineVariables();
   updateDistanceSpans();
   setDynamicOpacity(elements[0]);
@@ -271,16 +294,23 @@ window.addEventListener("scroll", () => {
   handleScroll();
 });
 
+// Mouse related events
 window.addEventListener('mousemove', handleMouseMove);
+// elements.forEach(element => {element.addEventListener('mouseenter', handleHover);});
+
 window.addEventListener('resize', defineVariables);
 
 topnav.addEventListener('click', () => {
-  if (!topnav.intersecting) {
-      handleTopNavClick();
+  if (!topnav.isIntersecting) {
+    handleTopNavClick();
   }
 });
 bottomnav.addEventListener('click', () => {
-  if (!bottomnav.intersecting) {
+  if (!bottomnav.isIntersecting) {
     handleBottomNavClick();
   }
 });
+
+function handleHover(event) {
+  console.log(event.target)
+}

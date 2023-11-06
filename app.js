@@ -3,13 +3,24 @@ const planetsdiv = Array.from(document.querySelectorAll(".planetdiv"));
 const space = Array.from(document.querySelectorAll(".space"));
 const perihelion = Array.from(document.querySelectorAll(".perihelion"));
 const aphelion = Array.from(document.querySelectorAll(".aphelion"));
-const info = Array.from(document.querySelectorAll(".info"));
-const title = Array.from(document.querySelectorAll(".title"));
 
-const sidebaricon = Array.from(document.querySelectorAll(".sidebaricon"));
+//------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+
+// Dynamic elements
+
+// Buttons
 const topnav = document.querySelector(".topnav");
 const bottomnav = document.querySelector(".bottomnav");
-const scroll = document.getElementById("scroll");
+const sidebaricon = Array.from(document.querySelectorAll(".sidebaricon"));
+// Elements
+const title = Array.from(document.querySelectorAll(".title"));
+const info = Array.from(document.querySelectorAll(".info"));
+const scrollDownSign = document.getElementById("scroll");
+
+//------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+
 var tnavBND = topnav.getBoundingClientRect();
 var bnavBND = bottomnav.getBoundingClientRect();
 
