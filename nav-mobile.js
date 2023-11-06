@@ -164,7 +164,7 @@ window.addEventListener("scroll", () => {
   info.forEach(element => {setInfoOpacity(element)});
   sidebaricon.forEach(element => {setSidebarIconOpacity(element)});
   nav.forEach(element => {setNavigationOpacity(element)});
-  scroll.style.opacity = OPACITY_0;
+  scrollDownSign.style.opacity = OPACITY_0;
 });
 
 topnav.addEventListener('click', () => {
