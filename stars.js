@@ -19,17 +19,9 @@ class CanvasManager {
     randomHeight() {
         return Math.floor(Math.random() * (bottomBuffer.bottom - topBuffer.top));
     }
-    drawBufferRectangles() {
-        this.ctx.globalAlpha = 0.01;
-        this.ctx.fillStyle = 'white';
-        this.ctx.fillRect(0, topBuffer.top, window.innerWidth, topBuffer.bottom - topBuffer.top);
-        this.ctx.fillRect(0, bottomBuffer.top, window.innerWidth, bottomBuffer.bottom - bottomBuffer.top);
-        this.ctx.globalAlpha = 1.0;
-    }
 
     // Initiation Functions
-    initialize(color) {
-        this.drawBufferRectangles();
+    initialize() {
         this.calculateTotalDots();
         this.lastScrollY = window.scrollY; // Store the initial scroll position
         for (let i = 0; i < this.totalDots; i++) {
@@ -37,12 +29,12 @@ class CanvasManager {
             const x = this.randomWidth();
             const y = this.randomHeight();
     
-            this.ctx.fillStyle = color;
+            this.ctx.fillStyle = 'white';
             this.ctx.fillRect(x, y, s, s);
             this.dots.push({ x, y, size: s });
         }
     }
-    constructor(canvasId, density, minDotSize, maxDotSize, scrollSpeed, color) {
+    constructor(canvasId, density, minDotSize, maxDotSize, scrollSpeed) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
         this.initialDensity  = density;
@@ -59,12 +51,11 @@ class CanvasManager {
         function changeSize () {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
-            this.handleStarScroll(color);
-            this.drawBufferRectangles(color);
+            this.handleStarScroll();
         }
         window.addEventListener('resize', changeSize.bind(this));
 
-        this.initialize(color);
+        this.initialize();
     }
 
     //------------------------------------------------------------------------------------------------
@@ -78,30 +69,29 @@ class CanvasManager {
         return Math.floor(Math.random() * (bottomBuffer.bottom - bottomBuffer.top) + bottomBuffer.top);
     }
 
-    drawDotAtBottom(color) {
+    drawDotAtBottom() {
         const s = this.randomSize();
         const x = this.randomWidth();
         const y = this.bottomBuffer();
 
-        this.ctx.fillStyle = color;
+        this.ctx.fillStyle = 'white';
         this.ctx.fillRect(x, y, s, s);
         this.dots.push({ x, y, size: s });
     }
-    drawDotAtTop(color) {
+    drawDotAtTop() {
         const s = this.randomSize();
         const x = this.randomWidth()
         const y = this.topBuffer()
 
-        this.ctx.fillStyle = color;
+        this.ctx.fillStyle = 'white';
         this.ctx.fillRect(x, y, s, s);
         this.dots.push({ x, y, size: s });
     }
-    handleStarScroll(color) {
+    handleStarScroll() {
         const currentScrollY = window.scrollY;
         const scrollAmount = (currentScrollY - this.lastScrollY) * this.scrollSpeed;
         this.lastScrollY = currentScrollY;
         this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        this.drawBufferRectangles();
 
         for (let i = this.dots.length - 1; i >= 0; i--) {
             const dot = this.dots[i];
@@ -109,11 +99,11 @@ class CanvasManager {
 
             if (dot.y + dot.size < topBuffer.top) {
                 this.dots.splice(i, 1);
-                this.drawDotAtBottom(color);
+                this.drawDotAtBottom();
                 continue;
             } else if (dot.y > bottomBuffer.bottom) {
                 this.dots.splice(i, 1);
-                this.drawDotAtTop(color);
+                this.drawDotAtTop();
                 continue;
             }
             this.ctx.fillRect(dot.x, dot.y, dot.size, dot.size);
