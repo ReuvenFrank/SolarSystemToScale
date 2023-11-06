@@ -9,6 +9,7 @@ body, html {
     padding: 0;
     background-color: black;
     overflow-x: hidden;
+    touch-action: pan-x pan-y;      
 }
 p {
     color: rgb(255, 255, 255);
