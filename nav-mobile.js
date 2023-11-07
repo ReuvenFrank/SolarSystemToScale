@@ -35,6 +35,10 @@ function scrollToTarget(element) {
   let initialValue = window.scrollY;
   let finalValue = getCenter(element.img);
 
+  if (element.name === 'Sun') {
+    finalValue = getCenter(element.info);
+  };
+
   function easeInOutCubic(t) {
     return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (t - 1) * (t - 1) * (t - 1) * (t - 1) * (t - 1);
   }
@@ -116,19 +120,24 @@ function setOpacity(element, value) {
 }
 
 function setNavigationOpacity(element) {
-  if ((isTopNav(element) && (curPla.bottom > 0 && curPla.top <= tnavBND.bottom || curPla.name === 'Sun')) ||
-  (isTopNav(element) && topPla.name === 'Neptune')) {
+  if ((isTopNav(element) 
+    && (curPla.bottom > 0 && curPla.top <= tnavBND.bottom || curPla.name === 'Sun')) ||
+    (isTopNav(element) && topPla.name === 'Neptune')) {
+
       setOpacity(element, OPACITY_0);
       element.intersecting = true;
+
   } else if (isBottomNav(element) && (
-      (curPla.bottom > bnavBND.top && curPla.top <= window.innerHeight) ||
-      (curPla.name === 'Sun' && curPla.bottom >= bnavBND.top) ||
-      curPla.name === 'Neptune' ||
-      (topPla.name === 'Neptune' && curPla.top <= bnavBND.bottom)
+    (curPla.bottom > bnavBND.top && curPla.top <= window.innerHeight) ||
+    (curPla.name === 'Sun' && curPla.bottom >= bnavBND.top) ||
+    curPla.name === 'Neptune' ||
+    (topPla.name === 'Neptune' && curPla.top <= bnavBND.bottom)
   )) {
       setOpacity(element, OPACITY_0);
       element.intersecting = true;
+
   } else if (!element.isScrolling) {
+      if (element === topnav) {console.log('50%')};
       setOpacity(element, OPACITY_50);
       element.intersecting = false;
   }

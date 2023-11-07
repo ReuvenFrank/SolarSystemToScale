@@ -47,6 +47,10 @@ function autoScroll(target, button) {
   let initialValue = window.scrollY;
   let finalValue = getCenter(target.img);
 
+  if (target.name === 'Sun') {
+    finalValue = getCenter(target.info);
+  };
+
   button.style.opacity = OPACITY_100;
   button.isDynamic = false;
 

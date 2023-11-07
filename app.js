@@ -33,7 +33,7 @@ var nexTime = {date: null, time: null}
 let planetsData = [
   { name: "Sun",
     userDis: null,
-    img: info[0], 
+    img: image[0], 
     div: info[0],
     info: info[0],
     top: null,
