@@ -59,7 +59,7 @@ function scrollToTarget(element) {
       window.scrollTo(0, currentValue);
       if (curPla.name === element.name) {
         nav.forEach(element => {element.isScrolling = false;});
-        nav.forEach(element => {element.style.opacity = OPACITY_50;});
+        // nav.forEach(element => {element.style.opacity = OPACITY_50;});
       }
       if (curPla.name === element.name) {
         var a = sidebaricon.findIndex(element => element.id === curPla.name);
@@ -123,7 +123,6 @@ function setNavigationOpacity(element) {
   if ((isTopNav(element) 
     && (curPla.bottom > 0 && curPla.top <= tnavBND.bottom || curPla.name === 'Sun')) ||
     (isTopNav(element) && topPla.name === 'Neptune')) {
-
       setOpacity(element, OPACITY_0);
       element.intersecting = true;
 
@@ -137,7 +136,6 @@ function setNavigationOpacity(element) {
       element.intersecting = true;
 
   } else if (!element.isScrolling) {
-      if (element === topnav) {console.log('50%')};
       setOpacity(element, OPACITY_50);
       element.intersecting = false;
   }
