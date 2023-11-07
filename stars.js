@@ -59,6 +59,10 @@ class CanvasManager {
         function changeSize () {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
+
+            topBuffer = { top: window.innerHeight*-1, bottom: 0 };
+            bottomBuffer = { top: window.innerHeight, bottom: window.innerHeight*2 };
+
             this.handleStarScroll(color);
             this.drawBufferRectangles(color);
         }
