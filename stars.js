@@ -20,7 +20,7 @@ class CanvasManager {
         return Math.floor(Math.random() * (bottomBuffer.bottom - topBuffer.top));
     }
     drawBufferRectangles() {
-        this.ctx.globalAlpha = 0;
+        this.ctx.globalAlpha = 0.1;
         this.ctx.fillStyle = 'white';
         this.ctx.fillRect(0, topBuffer.top, window.innerWidth, topBuffer.bottom - topBuffer.top);
         this.ctx.fillRect(0, bottomBuffer.top, window.innerWidth, bottomBuffer.bottom - bottomBuffer.top);
