@@ -12,6 +12,7 @@ const aphelion = Array.from(document.querySelectorAll(".aphelion"));
 // Buttons
 const topnav = document.querySelector(".topnav");
 const bottomnav = document.querySelector(".bottomnav");
+const sidebardiv = document.querySelector(".sidebardiv");
 const sidebaricon = Array.from(document.querySelectorAll(".sidebaricon"));
 // Elements
 const title = Array.from(document.querySelectorAll(".title"));

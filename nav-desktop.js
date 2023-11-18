@@ -4,6 +4,7 @@ const elements = [topnav, bottomnav, ...sidebaricon, ...info, ...title, scrollDo
 const OPACITY_100 = "100%";
 const OPACITY_50 = "50%";
 const OPACITY_0 = "0%";
+const multiplier = 0.01;
 
 // Flags
 var isScrolled = true;
@@ -311,6 +312,25 @@ bottomnav.addEventListener('click', () => {
   }
 });
 
-// function handleHover(event) {
-//   console.log(event.target)
-// }
+
+function finalElementPosition (element, multiplier, cursor) {
+
+    // Calculate new position
+	  newX = element.x + multiplier * (cursor.x - element.x);
+	  newY = element.y + multiplier * (cursor.y - element.y);
+
+    // Apply new position
+	  element.style.left = newX - 50 + 'px';
+	  element.style.top = newY - 50 + 'px';
+};
+
+elements.forEach(element => {
+    element.x = element.getBoundingClientRect().x;
+    element.y = element.getBoundingClientRect().y;
+});
+
+window.addEventListener('mousemove', () => {
+    elements.forEach(element => {
+      finalElementPosition(element, multiplier, cursor);
+    });
+});
