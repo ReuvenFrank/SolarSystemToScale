@@ -9,7 +9,30 @@ body, html {
     padding: 0;
     background-color: black;
     overflow-x: hidden;
-    touch-action: pan-x pan-y;      
+    touch-action: pan-x pan-y;
+    border-width: 1px;
+    border-color: red;
+    border-style: dotted;
+}
+body > * {
+    border-width: 1px;
+    border-color: red;
+    border-style: dotted;
+}
+body > * > * {
+    border-width: 1px;
+    border-color: red;
+    border-style: dotted;
+}
+body > * > * > * {
+    border-width: 1px;
+    border-color: red;
+    border-style: dotted;
+}
+body > * > * > * > * {
+    border-width: 1px;
+    border-color: red;
+    border-style: dotted;
 }
 p {
     color: rgb(255, 255, 255);
